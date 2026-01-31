@@ -17,7 +17,7 @@ const Courses: React.FC<CoursesProps> = ({ onSelectCourse }) => {
             opacity: 1,
             transition: {
                 staggerChildren: 0.1
-            }
+            } as const
         }
     };
 

@@ -14,7 +14,7 @@ const Chat: React.FC<ChatProps> = ({ onSelectChat }) => {
             opacity: 1,
             transition: {
                 staggerChildren: 0.05
-            }
+            } as const
         }
     };
 

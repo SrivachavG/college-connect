@@ -11,7 +11,7 @@ const Profile: React.FC = () => {
             y: 0,
             transition: {
                 staggerChildren: 0.1
-            }
+            } as const
         }
     };
 

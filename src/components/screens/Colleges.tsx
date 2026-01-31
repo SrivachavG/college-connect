@@ -14,7 +14,7 @@ const Colleges: React.FC<CollegesProps> = ({ onSelectCollege }) => {
             opacity: 1,
             transition: {
                 staggerChildren: 0.1
-            }
+            } as const
         }
     };
 
