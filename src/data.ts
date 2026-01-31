@@ -85,8 +85,17 @@ export const SAMPLE_EVENTS = [
 ];
 
 export const SAMPLE_MATERIALS = [
-    { id: 'm1', title: 'Quantum Mechanics Notes', subject: 'Physics', type: 'PDF', size: '4.2 MB', downloads: 125 },
-    { id: 'm2', title: 'Data Structures Cheat Sheet', subject: 'CompSci', type: 'Image', size: '1.5 MB', downloads: 340 },
-    { id: 'm3', title: 'Previous Year Math Paper', subject: 'Math', type: 'PDF', size: '2.1 MB', downloads: 85 },
-    { id: 'm4', title: 'Web Development Guide', subject: 'CompSci', type: 'PDF', size: '5.8 MB', downloads: 210 },
+    { id: 'm1', title: 'Thermodynamics: Entropy & Heat Laws', subject: 'Mechanical', type: 'PDF', size: '12.4 MB', downloads: 850 },
+    { id: 'm2', title: 'Data Structures & Algorithms in C++', subject: 'Computer Science', type: 'PDF', size: '8.5 MB', downloads: 1240 },
+    { id: 'm3', title: 'Circuit Analysis - Kirchhoffs Laws', subject: 'Electrical', type: 'PDF', size: '5.2 MB', downloads: 620 },
+    { id: 'm4', title: 'Fluid Mechanics: Laminar vs Turbulent', subject: 'Civil', type: 'PDF', size: '15.8 MB', downloads: 410 },
+    { id: 'm5', title: 'Operating Systems: Kernel Design', subject: 'Computer Science', type: 'PDF', size: '6.7 MB', downloads: 980 },
+    { id: 'm6', title: 'Structural Engineering: Truss Analysis', subject: 'Civil', type: 'PDF', size: '10.1 MB', downloads: 540 },
+];
+
+export const EXTERNAL_RESOURCES = [
+    { id: 'r1', name: 'Scribd: Engineering Archive', url: 'https://www.scribd.com/', type: 'Library', icon: 'book' },
+    { id: 'r2', name: 'ResearchGate: Academic Papers', url: 'https://www.researchgate.net/', type: 'Journal', icon: 'file-text' },
+    { id: 'r3', name: 'MIT OpenCourseWare', url: 'https://ocw.mit.edu/', type: 'Courseware', icon: 'university' },
+    { id: 'r4', name: 'Stack Overflow: Mechanical Engineering', url: 'https://stackoverflow.com/', type: 'Community', icon: 'message-square' },
 ];
