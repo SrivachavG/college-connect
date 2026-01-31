@@ -23,5 +23,6 @@ export const SCREEN_TITLES: Record<string, string> = {
     chatConversation: 'Chat',
     profile: 'My Profile',
     notifications: 'Notifications',
+    aiAssistant: 'AI Knowledge Hub',
     files: 'My Files'
 };
