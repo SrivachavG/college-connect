@@ -24,5 +24,7 @@ export const SCREEN_TITLES: Record<string, string> = {
     profile: 'My Profile',
     notifications: 'Notifications',
     aiAssistant: 'AI Knowledge Hub',
-    files: 'My Files'
+    files: 'My Files',
+    events: 'Events & Deadlines',
+    materials: 'Study Materials'
 };

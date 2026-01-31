@@ -9,6 +9,8 @@ import Courses from './components/screens/Courses';
 import Chat from './components/screens/Chat';
 import Profile from './components/screens/Profile';
 import AIAssistant from './components/screens/AIAssistant';
+import Events from './components/screens/Events';
+import Materials from './components/screens/Materials';
 import { SCREEN_TITLES } from './constants';
 import { Search, Settings } from 'lucide-react';
 
@@ -30,6 +32,10 @@ function App() {
         return <AIAssistant key="aiAssistant" />;
       case 'profile':
         return <Profile key="profile" />;
+      case 'events':
+        return <Events key="events" />;
+      case 'materials':
+        return <Materials key="materials" />;
       case 'notifications':
         return (
           <motion.div

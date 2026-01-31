@@ -76,3 +76,17 @@ export const SAMPLE_UPLOADED_FILES = [
     { id: 'f2', name: 'Course Outline CS202.docx', size: '0.8 MB', type: 'doc', uploaded: '1 week ago' },
     { id: 'f3', name: 'Project Idea Sketch.png', size: '1.1 MB', type: 'img', uploaded: '3 days ago' }
 ];
+
+export const SAMPLE_EVENTS = [
+    { id: 'e1', title: 'Tech Symposium 2026', date: 'Feb 15, 2026', time: '10:00 AM', location: 'Main Auditorium', type: 'event', category: 'Tech' },
+    { id: 'e2', title: 'Physics Midterm Exam', date: 'Feb 12, 2026', time: '02:00 PM', location: 'Hall A', type: 'deadline', category: 'Academic' },
+    { id: 'e3', title: 'AI Workshop', date: 'Feb 18, 2026', time: '04:00 PM', location: 'Lab 4', type: 'event', category: 'Workshop' },
+    { id: 'e4', title: 'Library Book Return', date: 'Feb 10, 2026', time: '05:00 PM', location: 'Central Library', type: 'deadline', category: 'Admin' },
+];
+
+export const SAMPLE_MATERIALS = [
+    { id: 'm1', title: 'Quantum Mechanics Notes', subject: 'Physics', type: 'PDF', size: '4.2 MB', downloads: 125 },
+    { id: 'm2', title: 'Data Structures Cheat Sheet', subject: 'CompSci', type: 'Image', size: '1.5 MB', downloads: 340 },
+    { id: 'm3', title: 'Previous Year Math Paper', subject: 'Math', type: 'PDF', size: '2.1 MB', downloads: 85 },
+    { id: 'm4', title: 'Web Development Guide', subject: 'CompSci', type: 'PDF', size: '5.8 MB', downloads: 210 },
+];

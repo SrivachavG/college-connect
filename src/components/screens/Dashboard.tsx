@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { SAMPLE_RECENT_ACTIVITY } from '../../data';
-import { GraduationCap, BookOpen, FileText, MessageSquare, Bell, Zap, Target, ArrowUpRight, Sparkles } from 'lucide-react';
+import { SAMPLE_RECENT_ACTIVITY, SAMPLE_EVENTS } from '../../data';
+import { GraduationCap, BookOpen, FileText, MessageSquare, Bell, Zap, Target, ArrowUpRight, Sparkles, Calendar, ChevronRight } from 'lucide-react';
 
 interface DashboardProps {
     onNavigate: (screen: string) => void;
@@ -102,6 +102,26 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
                     </div>
                 </motion.button>
 
+                {/* Upcoming Events Mini Widget - NEW */}
+                <motion.button
+                    variants={item}
+                    whileHover={{ scale: 1.02 }}
+                    onClick={() => onNavigate('events')}
+                    className="lg:col-span-1 glass-card rounded-[2rem] p-6 bg-amber-500/10 border-amber-500/20 flex flex-col justify-between group"
+                >
+                    <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center space-x-2 text-amber-500">
+                            <Calendar size={18} />
+                            <span className="text-xs font-black uppercase tracking-widest">Events</span>
+                        </div>
+                        <ChevronRight size={16} className="text-slate-500 group-hover:text-amber-400 transition-colors" />
+                    </div>
+                    <div className="text-left">
+                        <span className="block text-lg font-black text-white truncate">{SAMPLE_EVENTS[0].title}</span>
+                        <span className="text-[10px] text-slate-400 font-bold uppercase">{SAMPLE_EVENTS[0].date}</span>
+                    </div>
+                </motion.button>
+
                 {/* Mini Widget - Next Exam */}
                 <motion.div
                     variants={item}
@@ -145,10 +165,12 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
                                 whileHover={{ x: 5 }}
                                 className="glass-card rounded-2xl p-4 flex items-center space-x-4 border-white/5 hover:border-blue-500/30"
                             >
-                                <div className={`p-3 rounded-xl text-white shadow-md ${activity.type === 'pdf' ? 'bg-red-500 shadow-red-500/20' :
-                                    activity.type === 'comment' ? 'bg-blue-500 shadow-blue-500/20' :
-                                        'bg-orange-500 shadow-orange-500/20'
-                                    }`}>
+                                <div className={cn(
+                                    "p-3 rounded-xl text-white shadow-md",
+                                    activity.type === 'pdf' ? 'bg-red-500 shadow-red-500/20' :
+                                        activity.type === 'comment' ? 'bg-blue-500 shadow-blue-500/20' :
+                                            'bg-orange-500 shadow-orange-500/20'
+                                )}>
                                     {activity.icon === 'file-text' && <FileText size={18} />}
                                     {activity.icon === 'message-square' && <MessageSquare size={18} />}
                                     {activity.icon === 'megaphone' && <Bell size={18} />}
@@ -171,3 +193,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
 };
 
 export default Dashboard;
+
+function cn(...inputs: any[]) {
+    return inputs.filter(Boolean).join(' ');
+}

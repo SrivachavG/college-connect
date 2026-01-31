@@ -1,5 +1,4 @@
-import React from 'react';
-import { Home, University, BookOpen, MessageCircle, User, Bell } from 'lucide-react';
+import { Home, University, BookOpen, MessageCircle, User, Bell, Calendar, FileText } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -11,7 +10,9 @@ const NAV_ITEMS = [
     { id: 'dashboard', label: 'Home', icon: Home },
     { id: 'colleges', label: 'Colleges', icon: University },
     { id: 'courses', label: 'Courses', icon: BookOpen },
-    { id: 'aiAssistant', label: 'AI Assistant', icon: MessageCircle },
+    { id: 'materials', label: 'Materials', icon: FileText },
+    { id: 'events', label: 'Events', icon: Calendar },
+    { id: 'aiAssistant', label: 'AI Hub', icon: MessageCircle },
     { id: 'chat', label: 'Chat', icon: MessageCircle },
     { id: 'profile', label: 'Profile', icon: User },
     { id: 'notifications', label: 'Notifications', icon: Bell },

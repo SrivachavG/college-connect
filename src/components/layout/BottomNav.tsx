@@ -1,5 +1,4 @@
-import React from 'react';
-import { Home, BookOpen, MessageCircle, User, Sparkles } from 'lucide-react';
+import { Home, BookOpen, User, Calendar, FileText } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -16,8 +15,8 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
     { id: 'dashboard', label: 'Home', icon: Home },
     { id: 'courses', label: 'Courses', icon: BookOpen },
-    { id: 'aiAssistant', label: 'AI Hub', icon: Sparkles },
-    { id: 'chat', label: 'Chat', icon: MessageCircle },
+    { id: 'materials', label: 'Materials', icon: FileText },
+    { id: 'events', label: 'Events', icon: Calendar },
     { id: 'profile', label: 'Profile', icon: User },
 ];
 
