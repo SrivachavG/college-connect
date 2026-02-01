@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>College Connect - Engineering Platform</title>
+
+  <!-- Dependencies -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Custom Design System -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Premium Background Layer -->
+  <div class="bg-mesh-glow">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Decorative Library Symbols -->
+    <div class="floating-lib-el lib-el-1"><i class="fas fa-quill-pen"></i></div>
+    <div class="floating-lib-el lib-el-2"><i class="fas fa-book-open"></i></div>
+    <div class="floating-lib-el lib-el-3"><i class="fas fa-scroll"></i></div>
+  </div>
+
+  <div class="app-shell" id="appShell">
+    <!-- Sidebar - Desktop (Hidden on mobile) -->
+    <aside class="sidebar glass-panel">
+      <a href="#dashboard" class="logo mb-8">
+        <i class="fas fa-graduation-cap"></i>
+        <span class="tracking-tighter">CollegeConnect</span>
+      </a>
+
+      <nav class="flex flex-col gap-4 flex-grow">
+        <a href="#dashboard" class="nav-link active" data-page="dashboard"><i class="fas fa-home-alt"></i>
+          Dashboard</a>
+        <a href="#colleges" class="nav-link" data-page="colleges"><i class="fas fa-university"></i> Institutions</a>
+        <a href="#courses" class="nav-link" data-page="courses"><i class="fas fa-book"></i> Courses</a>
+        <a href="#tools" class="nav-link" data-page="tools"><i class="fas fa-calculator"></i> Tools</a>
+        <a href="#chat" class="nav-link" data-page="chat"><i class="fas fa-comments"></i> AI Chat</a>
+        <a href="#files" class="nav-link" data-page="files"><i class="fas fa-folder-open"></i> Vault</a>
+      </nav>
+
+      <div class="mt-auto space-y-4">
+        <a href="#profile" class="nav-link" data-page="profile"><i class="fas fa-user-circle"></i> Profile</a>
+        <a href="#settings" class="nav-link" data-page="settings"><i class="fas fa-cog"></i> Settings</a>
+        <button onclick="Store.logout()" class="nav-link text-rose-500 w-full hover:bg-rose-50"><i
+            class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+    </aside>
+
+    <!-- Top Bar -->
+    <header class="topbar">
+      <h1 id="currentScreenTitle" class="text-xl font-semibold">Dashboard</h1>
+      <div class="flex items-center gap-4">
+        <a href="#notifications" class="icon-actions relative">
+          <i class="fas fa-bell"></i>
+          <span id="notif-dot"></span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Viewport - Screen Manager -->
+    <main class="main-viewport" id="main-viewport">
+      <!-- Screens Injected via JS for Transitions -->
+    </main>
+
+    <!-- Frosted Bottom Navigation (Pill Shape) -->
+    <nav class="bottom-nav glass-panel">
+      <a href="#dashboard" class="nav-item active btn-magnetic" data-screen="dashboard">
+        <div class="icon-glow"></div>
+        <i class="fas fa-grid-2"></i>
+      </a>
+      <a href="#colleges" class="nav-item btn-magnetic" data-screen="colleges">
+        <div class="icon-glow"></div>
+        <i class="fas fa-building"></i>
+      </a>
+      <a href="#courses" class="nav-item btn-magnetic" data-screen="courses">
+        <div class="icon-glow"></div>
+        <i class="fas fa-book"></i>
+      </a>
+      <a href="#chat" class="nav-item btn-magnetic" data-screen="chat">
+        <div class="icon-glow"></div>
+        <i class="fas fa-comments"></i>
+      </a>
+      <a href="#profile" class="nav-item btn-magnetic" data-screen="profile">
+        <div class="icon-glow"></div>
+        <i class="fas fa-user-circle"></i>
+      </a>
+      <a href="#files" class="nav-item btn-magnetic" data-screen="files">
+        <div class="icon-glow"></div>
+        <i class="fas fa-folder-open"></i>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Global Search Overlay -->
+  <div id="search-overlay" class="search-overlay glass-panel">
+    <div class="w-full max-w-lg mt-[10vh]">
+      <div class="relative">
+        <input type="text" id="global-search-input" placeholder="Search anything..."
+          class="w-full px-8 py-5 rounded-2xl bg-white/90 shadow-2xl border-none text-lg font-bold focus:ring-4 focus:ring-blue-500/20">
+        <button onclick="closeSearch()"
+          class="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 text-2xl">&times;</button>
+      </div>
+      <div id="search-results" class="mt-6 space-y-3">
+        <!-- Results here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Centralized Modal Manager -->
+  <div id="modal-root" class="fixed inset-0 z-[5000] hidden flex items-center justify-center p-4">
+    <div id="modal-backdrop" class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm opacity-0 transition-opacity">
+    </div>
+    <div id="modal-container" class="relative w-full max-w-md scale-90 opacity-0 transition-all duration-300">
+      <!-- Content here -->
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="pointer-events-none"></div>
+
+  <!-- Core App Logic -->
+  <!-- Senior Architecture Modules -->
+  <script src="js/core/store.js"></script>
+  <script src="js/core/data.js"></script>
+  <script src="js/core/router.js"></script>
+  <script src="js/ui/ui-engine.js"></script>
+  <script src="app.js"></script>
+
+</body>
+
+</html>

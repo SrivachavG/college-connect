@@ -1,0 +1,121 @@
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import { Calculator, Ruler, Code, BookOpen, GraduationCap, Clock, Folder, PenTool, Library } from 'lucide-react'
+import Card from '../components/ui/Card'
+import ScientificCalculator from '../components/tools/Calculator'
+import UnitConverter from '../components/tools/UnitConverter'
+import CodeEditor from '../components/tools/CodeEditor'
+import FormulaReference from '../components/tools/FormulaReference'
+import GpaCalculator from '../components/tools/GpaCalculator'
+import PomodoroTimer from '../components/tools/PomodoroTimer'
+import FileManager from '../components/tools/FileManager'
+import CollaborationBoard from '../components/tools/CollaborationBoard'
+import ResourceLibrary from '../components/tools/ResourceLibrary'
+
+const tools = [
+    { id: 'calculator', name: 'Scientific Calculator', icon: Calculator, color: 'blue' },
+    { id: 'converter', name: 'Unit Converter', icon: Ruler, color: 'green' },
+    { id: 'editor', name: 'Code Editor', icon: Code, color: 'purple' },
+    { id: 'formulas', name: 'Formula Reference', icon: BookOpen, color: 'orange' },
+    { id: 'gpa', name: 'GPA Calculator', icon: GraduationCap, color: 'pink' },
+    { id: 'pomodoro', name: 'Study Timer', icon: Clock, color: 'indigo' },
+    { id: 'files', name: 'File Manager', icon: Folder, color: 'yellow' },
+    { id: 'whiteboard', name: 'Whiteboard', icon: PenTool, color: 'cyan' },
+    { id: 'library', name: 'Resource Library', icon: Library, color: 'rose' },
+]
+
+const colorClasses: Record<string, string> = {
+    blue: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400',
+    green: 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400',
+    purple: 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400',
+    orange: 'bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400',
+    pink: 'bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400',
+    indigo: 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400',
+    yellow: 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400',
+    cyan: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400',
+    rose: 'bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400',
+}
+
+export default function Tools() {
+    const [activeTool, setActiveTool] = useState<string | null>(null)
+
+    const renderTool = () => {
+        switch (activeTool) {
+            case 'calculator':
+                return <ScientificCalculator />
+            case 'converter':
+                return <UnitConverter />
+            case 'editor':
+                return <CodeEditor />
+            case 'formulas':
+                return <FormulaReference />
+            case 'gpa':
+                return <GpaCalculator />
+            case 'pomodoro':
+                return <PomodoroTimer />
+            case 'files':
+                return <FileManager />
+            case 'whiteboard':
+                return <CollaborationBoard />
+            case 'library':
+                return <ResourceLibrary />
+            default:
+                return null
+        }
+    }
+
+    return (
+        <div className="space-y-6">
+            <div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Engineering Tools</h2>
+                <p className="text-gray-600 dark:text-gray-400">Essential tools for engineering students</p>
+            </div>
+
+            {!activeTool ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {tools.map((tool, index) => (
+                        <motion.div
+                            key={tool.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                        >
+                            <Card
+                                hover
+                                className="p-6 cursor-pointer group"
+                                onClick={() => setActiveTool(tool.id)}
+                            >
+                                <div className={`w-14 h-14 rounded-xl ${colorClasses[tool.color]} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                                    <tool.icon className="w-7 h-7" />
+                                </div>
+                                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                                    {tool.name}
+                                </h3>
+                                <p className="text-sm text-gray-600 dark:text-gray-400">
+                                    Click to open
+                                </p>
+                            </Card>
+                        </motion.div>
+                    ))}
+                </div>
+            ) : (
+                <div>
+                    <motion.button
+                        onClick={() => setActiveTool(null)}
+                        className="mb-4 px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        ← Back to Tools
+                    </motion.button>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                    >
+                        {renderTool()}
+                    </motion.div>
+                </div>
+            )}
+        </div>
+    )
+}

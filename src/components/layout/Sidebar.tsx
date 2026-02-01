@@ -1,89 +1,150 @@
-import { Home, University, BookOpen, MessageCircle, User, Bell, Calendar, FileText } from 'lucide-react';
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { NavLink } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import {
+    LayoutDashboard,
+    GraduationCap,
+    BookOpen,
+    MessageCircle,
+    User,
+    Settings,
+    LogOut,
+    Wrench,
+    Calendar
+} from 'lucide-react'
+import { useAuthStore } from '../../store/useAuthStore'
+import toast from 'react-hot-toast'
 
-function cn(...inputs: ClassValue[]) {
-    return twMerge(clsx(inputs));
+const navItems = [
+    { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+    { to: '/events', icon: Calendar, label: 'Events' },
+    { to: '/colleges', icon: GraduationCap, label: 'Colleges' },
+    { to: '/courses', icon: BookOpen, label: 'Courses' },
+    { to: '/chat', icon: MessageCircle, label: 'Chat' },
+    { to: '/tools', icon: Wrench, label: 'Tools' },
+]
+
+const bottomItems = [
+    { to: '/profile', icon: User, label: 'Profile' },
+    { to: '/settings', icon: Settings, label: 'Settings' },
+]
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.1 }
+    }
 }
 
-const NAV_ITEMS = [
-    { id: 'dashboard', label: 'Home', icon: Home },
-    { id: 'colleges', label: 'Colleges', icon: University },
-    { id: 'courses', label: 'Courses', icon: BookOpen },
-    { id: 'materials', label: 'Materials', icon: FileText },
-    { id: 'events', label: 'Events', icon: Calendar },
-    { id: 'aiAssistant', label: 'AI Hub', icon: MessageCircle },
-    { id: 'chat', label: 'Chat', icon: MessageCircle },
-    { id: 'profile', label: 'Profile', icon: User },
-    { id: 'notifications', label: 'Notifications', icon: Bell },
-];
-
-interface SidebarProps {
-    activeTab: string;
-    onTabChange: (id: string) => void;
-    unreadCount: number;
+const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0 }
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange, unreadCount }) => {
+export default function Sidebar() {
+    const { logout, user } = useAuthStore()
+
+    const handleLogout = () => {
+        logout()
+        toast.success('Logged out successfully')
+    }
+
     return (
-        <aside className="hidden lg:flex flex-col w-72 h-screen fixed left-0 top-0 bg-slate-950 border-r border-slate-800 p-6 z-50">
-            <div className="flex items-center space-x-3 mb-10 px-2 transition-transform hover:scale-105 cursor-pointer">
-                <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-500/20">
-                    <University size={24} />
+        <aside className="row-span-2 bg-white dark:bg-black border-r border-gray-200 dark:border-white/10 p-6 flex flex-col transition-colors duration-300">
+            {/* Logo */}
+            <motion.div
+                className="mb-12 px-3"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <div className="flex items-center gap-3">
+                    <motion.div
+                        className="w-8 h-8 bg-black dark:bg-white rounded-lg flex items-center justify-center"
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.5 }}
+                    >
+                        <GraduationCap className="w-5 h-5 text-white dark:text-black" />
+                    </motion.div>
+                    <div>
+                        <span className="text-xl font-semibold text-black dark:text-white">CollegeConnect</span>
+                        {user && <p className="text-xs text-gray-500 dark:text-gray-400">{user.name}</p>}
+                    </div>
                 </div>
-                <span className="text-xl font-black tracking-tight text-white">College<span className="text-blue-400">Connect</span></span>
-            </div>
+            </motion.div>
 
-            <nav className="flex-grow space-y-1">
-                {NAV_ITEMS.map((item) => {
-                    const Icon = item.icon;
-                    const isActive = activeTab === item.id;
+            {/* Navigation Links */}
+            <motion.nav
+                className="flex-1 space-y-1"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
+                {navItems.map((item) => (
+                    <NavLink
+                        key={item.to}
+                        to={item.to}
+                        className={({ isActive }) =>
+                            `flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 ${isActive
+                                ? 'bg-black dark:bg-white text-white dark:text-black'
+                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-black dark:hover:text-white'
+                            }`
+                        }
+                    >
+                        {({ isActive }) => (
+                            <motion.div
+                                className="flex items-center gap-3 w-full"
+                                variants={itemVariants}
+                                whileHover={{ x: 4 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                <item.icon className="w-5 h-5" />
+                                <span className="text-sm font-medium">{item.label}</span>
+                                {isActive && (
+                                    <motion.div
+                                        className="ml-auto w-1 h-1 rounded-full bg-current"
+                                        layoutId="activeIndicator"
+                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                    />
+                                )}
+                            </motion.div>
+                        )}
+                    </NavLink>
+                ))}
+            </motion.nav>
 
-                    return (
-                        <button
-                            key={item.id}
-                            onClick={() => onTabChange(item.id)}
-                            className={cn(
-                                "w-full flex items-center space-x-3 px-4 py-3.5 rounded-2xl font-semibold transition-all duration-300 group",
-                                isActive
-                                    ? "bg-blue-500/10 text-blue-400 shadow-sm"
-                                    : "text-slate-400 hover:bg-slate-900 hover:text-slate-200"
-                            )}
+            {/* Bottom Links */}
+            <div className="mt-auto space-y-1 pt-6 border-t border-gray-100 dark:border-white/10">
+                {bottomItems.map((item) => (
+                    <NavLink
+                        key={item.to}
+                        to={item.to}
+                        className={({ isActive }) =>
+                            `flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 ${isActive
+                                ? 'bg-black dark:bg-white text-white dark:text-black'
+                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-black dark:hover:text-white'
+                            }`
+                        }
+                    >
+                        <motion.div
+                            className="flex items-center gap-3 w-full"
+                            whileHover={{ x: 4 }}
                         >
-                            <div className={cn(
-                                "p-2 rounded-lg transition-colors",
-                                isActive ? "bg-blue-600 text-white shadow-md shadow-blue-600/40" : "bg-slate-900 text-slate-500 group-hover:bg-slate-800 group-hover:text-slate-300"
-                            )}>
-                                <Icon size={20} />
-                            </div>
-                            <span>{item.label}</span>
-                            {item.id === 'notifications' && unreadCount > 0 && (
-                                <span className="ml-auto bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full ring-2 ring-white">
-                                    {unreadCount}
-                                </span>
-                            )}
-                        </button>
-                    );
-                })}
-            </nav>
+                            <item.icon className="w-5 h-5" />
+                            <span className="text-sm font-medium">{item.label}</span>
+                        </motion.div>
+                    </NavLink>
+                ))}
 
-            <div className="mt-auto p-4 bg-slate-900/50 rounded-3xl border border-slate-800">
-                <div className="flex items-center space-x-3 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-indigo-500/20 border-2 border-slate-800 shadow-sm overflow-hidden">
-                        <img src="https://placehold.co/40x40/6366f1/ffffff?text=SS" alt="User" />
-                    </div>
-                    <div className="min-w-0">
-                        <p className="text-sm font-bold text-slate-200 truncate">Sunny S.</p>
-                        <p className="text-[10px] text-slate-500 font-medium">IIT Bombay</p>
-                    </div>
-                </div>
-                <button className="w-full flex items-center justify-center space-x-2 py-2 px-4 bg-slate-800 text-slate-300 text-xs font-bold rounded-xl border border-slate-700 hover:border-blue-500 hover:text-blue-400 transition-all">
-                    <span>Go Pro</span>
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-                </button>
+                <motion.button
+                    onClick={handleLogout}
+                    className="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-200 text-gray-600 dark:text-gray-400 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 w-full"
+                    whileHover={{ x: 4 }}
+                >
+                    <LogOut className="w-5 h-5" />
+                    <span className="text-sm font-medium">Logout</span>
+                </motion.button>
             </div>
         </aside>
-    );
-};
-
-export default Sidebar;
+    )
+}

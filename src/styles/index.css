@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply antialiased text-gray-900 dark:text-white bg-gray-50 dark:bg-black;
+    }
+}
+
+.dark {
+    color-scheme: dark;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-700 rounded-full hover:bg-gray-400 dark:hover:bg-gray-600;
+}
+
+/* Calendar Dark Mode Overrides */
+.dark .react-calendar {
+    background-color: transparent !important;
+    color: white !important;
+}
+
+.dark .react-calendar__navigation button {
+    color: white !important;
+}
+
+.dark .react-calendar__navigation button:enabled:hover,
+.dark .react-calendar__navigation button:enabled:focus {
+    background-color: #374151 !important;
+}
+
+.dark .react-calendar__month-view__weekdays__weekday {
+    color: #9ca3af !important;
+}
+
+.dark .react-calendar__month-view__days__day--weekend {
+    color: #f87171 !important;
+}
