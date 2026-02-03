@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Card from '../components/ui/Card'
-import { Clock, User, PlayCircle, BookOpen, CheckCircle } from 'lucide-react'
+import { Clock, User, PlayCircle, CheckCircle } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Modal from '../components/ui/Modal'
 
