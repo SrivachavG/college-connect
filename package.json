@@ -2,6 +2,7 @@
   "name": "college-connect",
   "private": true,
   "version": "1.0.0",
+  "homepage": "https://srivachavg.github.io/college-connect",
   "type": "module",
   "scripts": {
     "dev": "vite",
