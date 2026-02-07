@@ -2,7 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useThemeStore } from '../../store/useThemeStore'
 import Sidebar from './Sidebar'
-import Topbar from './Topbar'
+import Topbar from './TopBar'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Layout() {
