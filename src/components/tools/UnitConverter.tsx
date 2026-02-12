@@ -3,7 +3,15 @@ import { motion } from 'framer-motion'
 import Card from '../ui/Card'
 import { ArrowRight } from 'lucide-react'
 
-const conversions = {
+type UnitDefinitions = { [key: string]: number }
+
+interface ConversionCategory {
+    name: string
+    units?: UnitDefinitions
+    special?: boolean
+}
+
+const conversions: Record<string, ConversionCategory> = {
     length: {
         name: 'Length',
         units: { meter: 1, kilometer: 0.001, centimeter: 100, millimeter: 1000, mile: 0.000621371, yard: 1.09361, foot: 3.28084, inch: 39.3701 }
@@ -31,7 +39,7 @@ export default function UnitConverter() {
     const convert = () => {
         const value = parseFloat(fromValue) || 0
 
-        if (category === 'temperature') {
+        if (conversions[category].special) {
             // Temperature conversion logic
             if (fromUnit === 'celsius' && toUnit === 'fahrenheit') {
                 return ((value * 9 / 5) + 32).toFixed(2)
@@ -45,7 +53,9 @@ export default function UnitConverter() {
             return value.toFixed(2)
         }
 
-        const units = (conversions[category] as any).units as Record<string, number>
+        const units = conversions[category].units
+        if (!units) return '0'
+
         const baseValue = value / units[fromUnit]
         const result = baseValue * units[toUnit]
         return result.toFixed(6)

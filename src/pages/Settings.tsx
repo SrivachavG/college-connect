@@ -31,8 +31,8 @@ export default function Settings() {
             <motion.div variants={itemVariants}>
                 <Card className="p-6">
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
-                            <Palette className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                        <div className="p-2 bg-gradient-to-br from-purple-500/10 to-purple-600/20 text-purple-600 dark:text-purple-400 rounded-lg">
+                            <Palette className="w-5 h-5" />
                         </div>
                         <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Appearance</h2>
                     </div>
@@ -46,15 +46,15 @@ export default function Settings() {
                                 <motion.button
                                     onClick={() => setTheme('light')}
                                     className={`p-4 rounded-xl border-2 transition-all ${theme === 'light'
-                                            ? 'border-gray-900 dark:border-white bg-gray-50 dark:bg-gray-700'
-                                            : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
+                                        ? 'border-gray-900 dark:border-white bg-gray-50 dark:bg-gray-700'
+                                        : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                                         }`}
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                 >
                                     <div className="flex items-center gap-3">
-                                        <div className="p-2 bg-yellow-100 rounded-lg">
-                                            <Sun className="w-5 h-5 text-yellow-600" />
+                                        <div className="p-2 bg-gradient-to-br from-amber-500/10 to-orange-500/20 rounded-lg">
+                                            <Sun className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                                         </div>
                                         <div className="text-left">
                                             <p className="font-medium text-gray-900 dark:text-white">Light</p>
@@ -75,14 +75,14 @@ export default function Settings() {
                                 <motion.button
                                     onClick={() => setTheme('dark')}
                                     className={`p-4 rounded-xl border-2 transition-all ${theme === 'dark'
-                                            ? 'border-gray-900 dark:border-white bg-gray-50 dark:bg-gray-700'
-                                            : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
+                                        ? 'border-gray-900 dark:border-white bg-gray-50 dark:bg-gray-700'
+                                        : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                                         }`}
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                 >
                                     <div className="flex items-center gap-3">
-                                        <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                                        <div className="p-2 bg-gradient-to-br from-blue-500/10 to-indigo-500/20 rounded-lg">
                                             <Moon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                                         </div>
                                         <div className="text-left">
@@ -110,7 +110,7 @@ export default function Settings() {
             <motion.div variants={itemVariants}>
                 <Card className="p-6">
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                        <div className="p-2 bg-gradient-to-br from-blue-500/10 to-cyan-500/20 rounded-lg">
                             <Bell className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                         </div>
                         <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Notifications</h2>
@@ -152,8 +152,8 @@ export default function Settings() {
             <motion.div variants={itemVariants}>
                 <Card className="p-6">
                     <div className="flex items-center gap-3 mb-6">
-                        <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
-                            <User className="w-5 h-5 text-green-600 dark:text-green-400" />
+                        <div className="p-2 bg-gradient-to-br from-emerald-500/10 to-green-500/20 rounded-lg">
+                            <User className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                         </div>
                         <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Account</h2>
                     </div>

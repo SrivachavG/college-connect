@@ -52,11 +52,11 @@ export default function Colleges() {
                     <motion.div key={college.id} variants={itemVariants}>
                         <Card hover className="p-6 cursor-pointer group h-full flex flex-col">
                             <motion.div
-                                className="w-12 h-12 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-lg flex items-center justify-center mb-4"
-                                whileHover={{ rotate: 360 }}
+                                className="w-12 h-12 bg-gradient-to-br from-indigo-500/10 to-purple-500/20 border border-indigo-200/50 dark:border-indigo-700/50 rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-indigo-500/10"
+                                whileHover={{ rotate: 360, scale: 1.1 }}
                                 transition={{ duration: 0.6 }}
                             >
-                                <School className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+                                <School className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
                             </motion.div>
 
                             <div className="flex items-start justify-between mb-3">

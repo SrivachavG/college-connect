@@ -133,9 +133,9 @@ export default function Courses() {
                                 </div>
 
                                 <div className="flex items-center gap-2">
-                                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${course.enrolled
-                                        ? 'bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400'
-                                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                                    <span className={`px-3 py-1 rounded-full text-xs font-medium border ${course.enrolled
+                                        ? 'bg-gradient-to-r from-emerald-500/10 to-green-500/20 text-emerald-600 dark:text-emerald-400 border-emerald-200/50 dark:border-emerald-700/50'
+                                        : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 border-gray-200 dark:border-gray-700'
                                         }`}>
                                         {course.enrolled ? 'Enrolled' : 'Not Enrolled'}
                                     </span>
@@ -171,9 +171,9 @@ export default function Courses() {
                                             {course.progress}%
                                         </motion.span>
                                     </div>
-                                    <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
+                                    <div className="w-full bg-gray-100 dark:bg-gray-700/50 rounded-full h-2 overflow-hidden">
                                         <motion.div
-                                            className="bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 h-2 rounded-full"
+                                            className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full shadow-[0_0_10px_rgba(59,130,246,0.5)]"
                                             initial={{ width: 0 }}
                                             animate={{ width: `${course.progress}%` }}
                                             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}

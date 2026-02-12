@@ -2,10 +2,12 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Calendar from 'react-calendar'
 import { format } from 'date-fns'
+import toast from 'react-hot-toast'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
-import { Plus, Clock, MapPin, Calendar as CalendarIcon, X } from 'lucide-react'
+import { Plus, Clock, MapPin, Calendar as CalendarIcon, X, Loader2 } from 'lucide-react'
 import 'react-calendar/dist/Calendar.css'
+import { useAuthStore } from '../store/useAuthStore'
 
 interface Event {
     id: string
@@ -23,31 +25,65 @@ const eventColors = {
     holiday: 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border-green-200 dark:border-green-800',
 }
 
+// Mock Data
+const MOCK_EVENTS: Event[] = [
+    {
+        id: '1',
+        title: 'Mid-term Exam',
+        date: new Date(new Date().setDate(new Date().getDate() + 2)),
+        type: 'exam',
+        time: '10:00 AM',
+        location: 'Hall A'
+    },
+    {
+        id: '2',
+        title: 'Project Submission',
+        date: new Date(new Date().setDate(new Date().getDate() + 5)),
+        type: 'assignment',
+        time: '11:59 PM',
+    },
+    {
+        id: '3',
+        title: 'Campus Tech Fest',
+        date: new Date(new Date().setDate(new Date().getDate() + 10)),
+        type: 'event',
+        time: '09:00 AM',
+        location: 'Auditorium'
+    }
+]
+
 export default function Events() {
+    const { user } = useAuthStore()
     const [date, setDate] = useState<Date>(new Date())
     const [showAddModal, setShowAddModal] = useState(false)
-    const [events, setEvents] = useState<Event[]>([
-        { id: '1', title: 'Data Structures Mid-Sem', date: new Date(2024, 1, 15), type: 'exam', time: '10:00 AM', location: 'Hall A1' },
-        { id: '2', title: 'Project Submission', date: new Date(2024, 1, 20), type: 'assignment', time: '11:59 PM' },
-        { id: '3', title: 'Tech Fest 2024', date: new Date(2024, 1, 25), type: 'event', location: 'Auditorium' },
-    ])
+    const [events, setEvents] = useState<Event[]>(MOCK_EVENTS)
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     // New Event Form State
     const [newEvent, setNewEvent] = useState<Partial<Event>>({ type: 'event', date: new Date() })
 
-    const handleAddEvent = () => {
-        if (!newEvent.title) return
-        const event: Event = {
-            id: Date.now().toString(),
+    const handleAddEvent = async () => {
+        if (!newEvent.title || !user) return
+
+        setIsSubmitting(true)
+
+        // Simulate network delay
+        await new Promise(resolve => setTimeout(resolve, 800))
+
+        const createdEvent = {
+            id: Math.random().toString(36).substr(2, 9),
             title: newEvent.title,
             date: newEvent.date || new Date(),
             type: newEvent.type || 'event',
             time: newEvent.time,
-            location: newEvent.location
-        }
-        setEvents([...events, event])
+            location: newEvent.location,
+        } as Event
+
+        setEvents([...events, createdEvent])
         setShowAddModal(false)
         setNewEvent({ type: 'event', date: new Date() })
+        setIsSubmitting(false)
+        toast.success('Event added successfully')
     }
 
     const selectedDateEvents = events.filter(event =>
@@ -258,8 +294,15 @@ export default function Events() {
                                         </div>
                                     </div>
 
-                                    <Button variant="primary" onClick={handleAddEvent} className="w-full justify-center mt-2">
-                                        Add {newEvent.title ? `"${newEvent.title}"` : 'Event'}
+                                    <Button variant="primary" onClick={handleAddEvent} disabled={isSubmitting} className="w-full justify-center mt-2">
+                                        {isSubmitting ? (
+                                            <>
+                                                <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                                                Adding...
+                                            </>
+                                        ) : (
+                                            <>Add {newEvent.title ? `"${newEvent.title}"` : 'Event'}</>
+                                        )}
                                     </Button>
                                 </div>
                             </Card>

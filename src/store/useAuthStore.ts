@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { persist, createJSONStorage } from 'zustand/middleware'
+import { persist } from 'zustand/middleware'
 
 interface User {
     id: string
@@ -22,36 +22,34 @@ export const useAuthStore = create<AuthStore>()(
             user: null,
             isAuthenticated: false,
 
-            login: async (email: string, password: string) => {
-                // Simulate API call
-                console.log('Logging in with', email, password)
-                await new Promise(resolve => setTimeout(resolve, 1000))
-
-                // Demo login - accept any credentials
-                const user: User = {
-                    id: '1',
-                    name: 'SRI VACHAV',
-                    email,
-                    role: 'student'
+            login: async (email, password) => {
+                // Mock login logic
+                if (email && password) {
+                    set({
+                        user: {
+                            id: '1',
+                            name: 'Test Student',
+                            email: email,
+                            role: 'student'
+                        },
+                        isAuthenticated: true
+                    })
+                    return true
                 }
-
-                set({ user, isAuthenticated: true })
-                return true
+                return false
             },
 
-            signup: async (name: string, email: string, password: string, role: 'student' | 'teacher') => {
-                // Simulate API call
-                console.log('Signing up', email, password)
-                await new Promise(resolve => setTimeout(resolve, 1000))
-
-                const user: User = {
-                    id: Date.now().toString(),
-                    name,
-                    email,
-                    role
-                }
-
-                set({ user, isAuthenticated: true })
+            signup: async (name, email, password, role) => {
+                // Mock signup logic
+                set({
+                    user: {
+                        id: '1',
+                        name: name,
+                        email: email,
+                        role: role
+                    },
+                    isAuthenticated: true
+                })
                 return true
             },
 
@@ -60,8 +58,7 @@ export const useAuthStore = create<AuthStore>()(
             }
         }),
         {
-            name: 'auth-storage',
-            storage: createJSONStorage(() => localStorage),
+            name: 'auth-storage', // unique name for localStorage key
         }
     )
 )

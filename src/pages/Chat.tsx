@@ -110,9 +110,9 @@ export default function Chat() {
                         <motion.button
                             key={channel.id}
                             onClick={() => setSelectedChannel(channel)}
-                            className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left transition-colors ${selectedChannel.id === channel.id
-                                    ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900'
-                                    : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+                            className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left transition-all duration-200 ${selectedChannel.id === channel.id
+                                ? 'bg-gradient-to-r from-indigo-500/10 to-purple-500/10 text-indigo-600 dark:text-indigo-400 font-medium'
+                                : 'hover:bg-gray-100 dark:hover:bg-gray-700/50 text-gray-700 dark:text-gray-300'
                                 }`}
                             whileHover={{ x: 2 }}
                         >
@@ -159,8 +159,8 @@ export default function Chat() {
                                     className={`flex gap-3 ${message.isMe ? 'flex-row-reverse' : ''}`}
                                 >
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium ${message.isMe
-                                            ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900'
-                                            : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+                                        ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900'
+                                        : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
                                         }`}>
                                         {message.avatar}
                                     </div>
@@ -173,9 +173,9 @@ export default function Chat() {
                                                 {formatDistance(message.timestamp, new Date(), { addSuffix: true })}
                                             </span>
                                         </div>
-                                        <div className={`px-4 py-2 rounded-2xl ${message.isMe
-                                                ? 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-tr-sm'
-                                                : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white rounded-tl-sm'
+                                        <div className={`px-4 py-2 rounded-2xl shadow-sm ${message.isMe
+                                            ? 'bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-tr-sm'
+                                            : 'bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-white rounded-tl-sm'
                                             }`}>
                                             <p className="text-sm">{message.content}</p>
                                         </div>

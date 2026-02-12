@@ -14,7 +14,8 @@ export default function Card({ children, className, hover = false, ...props }: C
     return (
         <Component
             className={clsx(
-                'minimal-card rounded-xl',
+                'glass-card p-6',
+                hover && 'glass-hover cursor-pointer',
                 className
             )}
             {...(hover ? {

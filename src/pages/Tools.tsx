@@ -25,15 +25,15 @@ const tools = [
 ]
 
 const colorClasses: Record<string, string> = {
-    blue: 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400',
-    green: 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400',
-    purple: 'bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400',
-    orange: 'bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400',
-    pink: 'bg-pink-100 dark:bg-pink-900/30 text-pink-600 dark:text-pink-400',
-    indigo: 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400',
-    yellow: 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400',
-    cyan: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400',
-    rose: 'bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400',
+    blue: 'bg-gradient-to-br from-blue-500/10 to-blue-600/20 text-blue-600 dark:text-blue-400 border border-blue-200/50 dark:border-blue-700/50',
+    green: 'bg-gradient-to-br from-emerald-500/10 to-emerald-600/20 text-emerald-600 dark:text-emerald-400 border border-emerald-200/50 dark:border-emerald-700/50',
+    purple: 'bg-gradient-to-br from-purple-500/10 to-purple-600/20 text-purple-600 dark:text-purple-400 border border-purple-200/50 dark:border-purple-700/50',
+    orange: 'bg-gradient-to-br from-orange-500/10 to-orange-600/20 text-orange-600 dark:text-orange-400 border border-orange-200/50 dark:border-orange-700/50',
+    pink: 'bg-gradient-to-br from-pink-500/10 to-pink-600/20 text-pink-600 dark:text-pink-400 border border-pink-200/50 dark:border-pink-700/50',
+    indigo: 'bg-gradient-to-br from-indigo-500/10 to-indigo-600/20 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-700/50',
+    yellow: 'bg-gradient-to-br from-yellow-500/10 to-yellow-600/20 text-yellow-600 dark:text-yellow-400 border border-yellow-200/50 dark:border-yellow-700/50',
+    cyan: 'bg-gradient-to-br from-cyan-500/10 to-cyan-600/20 text-cyan-600 dark:text-cyan-400 border border-cyan-200/50 dark:border-cyan-700/50',
+    rose: 'bg-gradient-to-br from-rose-500/10 to-rose-600/20 text-rose-600 dark:text-rose-400 border border-rose-200/50 dark:border-rose-700/50',
 }
 
 export default function Tools() {

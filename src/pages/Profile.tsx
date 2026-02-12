@@ -32,9 +32,9 @@ export default function Profile() {
                 <Card className="p-8">
                     <div className="flex items-center gap-6">
                         <motion.div
-                            className="w-20 h-20 bg-gradient-to-br from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 rounded-full flex items-center justify-center text-white dark:text-gray-900 text-2xl font-bold"
-                            whileHover={{ scale: 1.1, rotate: 360 }}
-                            transition={{ duration: 0.5 }}
+                            className="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-indigo-500/20"
+                            whileHover={{ scale: 1.05, rotate: 5 }}
+                            transition={{ duration: 0.3 }}
                         >
                             SV
                         </motion.div>

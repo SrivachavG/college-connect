@@ -1,6 +1,4 @@
 import { useState, useRef, useEffect } from 'react'
-
-
 import Card from '../ui/Card'
 import { Pen, Eraser, Download, RotateCcw } from 'lucide-react'
 
