@@ -13,11 +13,26 @@ interface Message {
     isMe: boolean
 }
 
+interface DirectMessage {
+    id: string
+    user: string
+    avatar: string
+    status: 'online' | 'offline' | 'busy'
+    lastMessage: string
+    unread: number
+}
+
 const channels = [
     { id: '1', name: 'general', members: 142 },
     { id: '2', name: 'study-group', members: 28 },
     { id: '3', name: 'project-discussion', members: 15 },
     { id: '4', name: 'doubt-clearing', members: 89 },
+]
+
+const directMessages: DirectMessage[] = [
+    { id: '1', user: 'Sarah Chen', avatar: 'SC', status: 'online', lastMessage: 'That looks great!', unread: 2 },
+    { id: '2', user: 'Mike Ross', avatar: 'MR', status: 'busy', lastMessage: 'Can we meet at 5?', unread: 0 },
+    { id: '3', user: 'Jessica Pearson', avatar: 'JP', status: 'offline', lastMessage: 'Reviewing it now.', unread: 0 },
 ]
 
 const initialMessages: Message[] = [
@@ -50,7 +65,9 @@ const initialMessages: Message[] = [
 export default function Chat() {
     const [messages, setMessages] = useState<Message[]>(initialMessages)
     const [newMessage, setNewMessage] = useState('')
-    const [selectedChannel, setSelectedChannel] = useState(channels[0])
+    const [activeTab, setActiveTab] = useState<'channels' | 'direct'>('channels')
+    const [activeChannel, setActiveChannel] = useState(channels[0])
+    const [activeDM, setActiveDM] = useState<DirectMessage | null>(null)
     const [isTyping, setIsTyping] = useState(false)
     const messagesEndRef = useRef<HTMLDivElement>(null)
 
@@ -84,8 +101,8 @@ export default function Chat() {
             // Simulate response
             const response: Message = {
                 id: (Date.now() + 1).toString(),
-                user: 'Sarah Chen',
-                avatar: 'SC',
+                user: activeTab === 'channels' ? 'Sarah Chen' : (activeDM?.user || 'User'),
+                avatar: activeTab === 'channels' ? 'SC' : (activeDM?.avatar || 'US'),
                 content: 'That\'s helpful! Thanks for sharing!',
                 timestamp: new Date(),
                 isMe: false
@@ -96,37 +113,106 @@ export default function Chat() {
 
     return (
         <div className="h-[calc(100vh-7rem)] flex gap-6">
-            {/* Channels Sidebar */}
-            <Card className="w-64 p-4 flex flex-col">
-                <div className="flex items-center justify-between mb-4">
-                    <h2 className="font-semibold text-gray-900 dark:text-white">Channels</h2>
+            {/* Sidebar */}
+            <Card className="w-80 p-4 flex flex-col">
+                <div className="flex items-center justify-between mb-6">
+                    <h2 className="font-semibold text-gray-900 dark:text-white">Messages</h2>
                     <button className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
                         <SettingsIcon className="w-4 h-4 text-gray-600 dark:text-gray-400" />
                     </button>
                 </div>
 
-                <div className="space-y-1 flex-1 overflow-y-auto">
-                    {channels.map((channel) => (
-                        <motion.button
-                            key={channel.id}
-                            onClick={() => setSelectedChannel(channel)}
-                            className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-left transition-all duration-200 ${selectedChannel.id === channel.id
-                                ? 'bg-gradient-to-r from-indigo-500/10 to-purple-500/10 text-indigo-600 dark:text-indigo-400 font-medium'
-                                : 'hover:bg-gray-100 dark:hover:bg-gray-700/50 text-gray-700 dark:text-gray-300'
-                                }`}
-                            whileHover={{ x: 2 }}
-                        >
-                            <Hash className="w-4 h-4" />
-                            <span className="flex-1 text-sm font-medium">{channel.name}</span>
-                            <span className="text-xs opacity-70">{channel.members}</span>
-                        </motion.button>
-                    ))}
+                {/* Tab Switcher */}
+                <div className="flex p-1 bg-gray-100 dark:bg-gray-800 rounded-xl mb-6">
+                    <button
+                        onClick={() => setActiveTab('channels')}
+                        className={`flex-1 py-1.5 text-sm font-medium rounded-lg transition-all ${activeTab === 'channels'
+                            ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
+                            : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
+                            }`}
+                    >
+                        Channels
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('direct')}
+                        className={`flex-1 py-1.5 text-sm font-medium rounded-lg transition-all ${activeTab === 'direct'
+                            ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
+                            : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
+                            }`}
+                    >
+                        Direct Messages
+                    </button>
+                </div>
+
+                <div className="space-y-1 flex-1 overflow-y-auto pr-2">
+                    {activeTab === 'channels' ? (
+                        channels.map((channel) => (
+                            <motion.button
+                                key={channel.id}
+                                onClick={() => setActiveChannel(channel)}
+                                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 ${activeChannel.id === channel.id
+                                    ? 'bg-primary/10 text-primary font-medium'
+                                    : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300'
+                                    }`}
+                                whileHover={{ x: 2 }}
+                            >
+                                <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${activeChannel.id === channel.id ? 'bg-primary/20' : 'bg-gray-200 dark:bg-gray-700'
+                                    }`}>
+                                    <Hash className="w-4 h-4" />
+                                </div>
+                                <div className="flex-1">
+                                    <span className="text-sm font-medium block">{channel.name}</span>
+                                    <span className="text-xs opacity-70">{channel.members} members</span>
+                                </div>
+                            </motion.button>
+                        ))
+                    ) : (
+                        directMessages.map((dm) => (
+                            <motion.button
+                                key={dm.id}
+                                onClick={() => setActiveDM(dm)}
+                                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-left transition-all duration-200 ${activeDM?.id === dm.id
+                                    ? 'bg-primary/10 text-primary font-medium'
+                                    : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300'
+                                    }`}
+                                whileHover={{ x: 2 }}
+                            >
+                                <div className="relative">
+                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium ${activeDM?.id === dm.id
+                                        ? 'bg-primary text-white'
+                                        : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
+                                        }`}>
+                                        {dm.avatar}
+                                    </div>
+                                    <span className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white dark:border-gray-900 ${dm.status === 'online' ? 'bg-green-500' :
+                                        dm.status === 'busy' ? 'bg-red-500' : 'bg-gray-400'
+                                        }`} />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                    <div className="flex justify-between items-start">
+                                        <span className="text-sm font-medium truncate">{dm.user}</span>
+                                        {dm.unread > 0 && (
+                                            <span className="bg-primary text-white text-[10px] px-1.5 py-0.5 rounded-full ml-2">
+                                                {dm.unread}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <p className="text-xs truncate opacity-70">{dm.lastMessage}</p>
+                                </div>
+                            </motion.button>
+                        ))
+                    )}
                 </div>
 
                 <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                     <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                         <Users className="w-4 h-4" />
-                        <span>{selectedChannel.members} members online</span>
+                        <span>
+                            {activeTab === 'channels'
+                                ? `${activeChannel.members} members` // Assuming all members are "online" for simplicity
+                                : `${directMessages.filter(d => d.status === 'online').length} active users`
+                            }
+                        </span>
                     </div>
                 </div>
             </Card>
@@ -137,11 +223,35 @@ export default function Chat() {
                 <Card className="p-4 mb-4">
                     <div className="flex items-center justify-between">
                         <div>
-                            <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-                                <Hash className="w-5 h-5" />
-                                {selectedChannel.name}
-                            </h2>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">Study and collaborate with peers</p>
+                            {activeTab === 'channels' ? (
+                                <>
+                                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+                                        <Hash className="w-5 h-5" />
+                                        {activeChannel.name}
+                                    </h2>
+                                    <p className="text-sm text-gray-500 dark:text-gray-400">Study and collaborate with peers</p>
+                                </>
+                            ) : (
+                                activeDM ? (
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-medium">
+                                            {activeDM.avatar}
+                                        </div>
+                                        <div>
+                                            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                                {activeDM.user}
+                                            </h2>
+                                            <div className="flex items-center gap-1.5">
+                                                <span className={`w-1.5 h-1.5 rounded-full ${activeDM.status === 'online' ? 'bg-green-500' : 'bg-gray-400'
+                                                    }`} />
+                                                <p className="text-sm text-gray-500 dark:text-gray-400 capitalize">{activeDM.status}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Select a conversation</h2>
+                                )
+                            )}
                         </div>
                     </div>
                 </Card>
@@ -229,7 +339,10 @@ export default function Chat() {
                             value={newMessage}
                             onChange={(e) => setNewMessage(e.target.value)}
                             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                            placeholder={`Message #${selectedChannel.name}`}
+                            placeholder={activeTab === 'channels'
+                                ? `Message #${activeChannel.name}`
+                                : `Message @${activeDM?.user || 'User'}`
+                            }
                             className="flex-1 bg-gray-100 dark:bg-gray-700 border-0 rounded-lg px-4 py-2.5 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-gray-900 dark:focus:ring-white outline-none"
                         />
                         <button className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">

@@ -11,8 +11,17 @@ import PomodoroTimer from '../components/tools/PomodoroTimer'
 import FileManager from '../components/tools/FileManager'
 import CollaborationBoard from '../components/tools/CollaborationBoard'
 import ResourceLibrary from '../components/tools/ResourceLibrary'
+import CareerRoadmap from '../components/tools/CareerRoadmap'
+import ProjectNexus from '../components/tools/ProjectNexus'
+import FlashcardMaster from '../components/tools/FlashcardMaster'
+import QuantumInterviewer from '../components/tools/QuantumInterviewer'
+import { Map, Lightbulb, Zap, MessageSquareCode } from 'lucide-react'
 
 const tools = [
+    { id: 'nexus', name: 'Project Nexus', icon: Lightbulb, color: 'orange' },
+    { id: 'flashcards', name: 'Flashcard Master', icon: Zap, color: 'purple' },
+    { id: 'interviewer', name: 'Quantum Interviewer', icon: MessageSquareCode, color: 'indigo' },
+    { id: 'roadmap', name: 'Career Roadmap', icon: Map, color: 'blue' },
     { id: 'calculator', name: 'Scientific Calculator', icon: Calculator, color: 'blue' },
     { id: 'converter', name: 'Unit Converter', icon: Ruler, color: 'green' },
     { id: 'editor', name: 'Code Editor', icon: Code, color: 'purple' },
@@ -41,6 +50,14 @@ export default function Tools() {
 
     const renderTool = () => {
         switch (activeTool) {
+            case 'nexus':
+                return <ProjectNexus />
+            case 'flashcards':
+                return <FlashcardMaster />
+            case 'interviewer':
+                return <QuantumInterviewer />
+            case 'roadmap':
+                return <CareerRoadmap />
             case 'calculator':
                 return <ScientificCalculator />
             case 'converter':

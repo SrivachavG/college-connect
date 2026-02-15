@@ -27,7 +27,7 @@ export default function Topbar() {
                     exit={{ opacity: 0, x: 10 }}
                     transition={{ duration: 0.2 }}
                 >
-                    <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300">
+                    <h1 className="text-3xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-light to-secondary-glow drop-shadow-sm">
                         {currentPage}
                     </h1>
                 </motion.div>

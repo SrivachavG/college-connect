@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import { useAuthStore } from '../../store/useAuthStore'
 import toast from 'react-hot-toast'
+import Logo from '../ui/Logo'
 
 const navItems = [
     { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -51,19 +52,6 @@ export default function Sidebar() {
 
     return (
         <aside className="h-full sidebar-vibrancy flex flex-col pt-5 pb-6 px-4 transition-all duration-300">
-            {/* macOS Traffic Lights */}
-            <div className="flex gap-2 px-2 mb-8 group">
-                <div className="w-3 h-3 rounded-full bg-[#FF5F57] border border-[#E0443E] shadow-sm flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#4c0b0b]/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                <div className="w-3 h-3 rounded-full bg-[#FEBC2E] border border-[#D89E24] shadow-sm flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#4c3b0b]/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                <div className="w-3 h-3 rounded-full bg-[#28C840] border border-[#1AAB29] shadow-sm flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#0b3310]/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-            </div>
-
             {/* Logo */}
             <motion.div
                 className="mb-8 px-2"
@@ -72,11 +60,9 @@ export default function Sidebar() {
                 transition={{ duration: 0.5 }}
             >
                 <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-system-blue to-blue-600 dark:from-primary dark:to-secondary flex items-center justify-center shadow-lg transition-all duration-300">
-                        <GraduationCap className="w-5 h-5 text-white" />
-                    </div>
+                    <Logo className="w-10 h-10" />
                     <div>
-                        <span className="text-lg font-semibold tracking-tight text-gray-900 dark:text-white transition-colors">
+                        <span className="text-xl font-display font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary-glow">
                             College Connect
                         </span>
                     </div>

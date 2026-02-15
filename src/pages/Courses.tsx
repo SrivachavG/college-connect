@@ -76,6 +76,28 @@ const courses: Course[] = [
         progress: 0,
         videos: []
     },
+    {
+        id: 5,
+        name: 'Advanced Agentic Workflows',
+        instructor: 'Dr. Sarah Connor',
+        duration: '6 weeks',
+        enrolled: true,
+        progress: 10,
+        videos: [
+            { id: 501, title: 'Introduction to Agentic AI', duration: '15:00', completed: true },
+            { id: 502, title: 'Multi-Agent Systems', duration: '20:00', completed: false },
+            { id: 503, title: 'Tool Use and Planning', duration: '25:00', completed: false },
+        ]
+    },
+    {
+        id: 6,
+        name: 'Large Language Model Architecture',
+        instructor: 'Prof. Geoffrey Hinton',
+        duration: '12 weeks',
+        enrolled: false,
+        progress: 0,
+        videos: []
+    },
 ]
 
 const containerVariants = {

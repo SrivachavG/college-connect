@@ -8,12 +8,13 @@ export default {
     theme: {
         extend: {
             colors: {
-                // Premium Glass/Pastel Theme
+                // Cosmic Glass Theme
                 glass: {
-                    100: 'rgba(255, 255, 255, 0.1)',
-                    200: 'rgba(255, 255, 255, 0.2)',
-                    300: 'rgba(255, 255, 255, 0.3)',
-                    400: 'rgba(255, 255, 255, 0.4)',
+                    100: 'rgba(255, 255, 255, 0.05)',
+                    200: 'rgba(255, 255, 255, 0.1)',
+                    300: 'rgba(255, 255, 255, 0.2)',
+                    400: 'rgba(255, 255, 255, 0.3)',
+                    dark: 'rgba(15, 23, 42, 0.6)',
                 },
                 pastel: {
                     purple: '#E0C3FC',
@@ -22,21 +23,22 @@ export default {
                     cream: '#FAD0C4',
                     mint: '#B5FFFC',
                 },
-                // Legacy / functional colors
                 background: {
                     DEFAULT: '#ffffff',
-                    dark: '#020617',
+                    dark: '#020617', // Deep cosmic slate
                     card: '#ffffff',
                     'card-dark': '#0f172a',
                 },
                 primary: {
-                    DEFAULT: '#8b5cf6', // Violet 500
-                    dark: '#7c3aed', // Violet 600
-                    light: '#a78bfa', // Violet 400
+                    DEFAULT: '#4f46e5', // Electric Indigo
+                    dark: '#4338ca',
+                    light: '#818cf8',
+                    glow: '#6366f1',
                 },
                 secondary: {
-                    DEFAULT: '#06b6d4',
+                    DEFAULT: '#06b6d4', // Cyan
                     dark: '#0891b2',
+                    glow: '#22d3ee',
                 },
                 accent: {
                     purple: '#d8b4fe',
@@ -45,9 +47,11 @@ export default {
                 },
             },
             boxShadow: {
-                'glass': '0 4px 30px rgba(0, 0, 0, 0.1)',
-                'glass-hover': '0 10px 40px rgba(0, 0, 0, 0.15)',
-                'neon': '0 0 10px rgba(139, 92, 246, 0.5), 0 0 20px rgba(139, 92, 246, 0.3)',
+                'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+                'glass-hover': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
+                'neon-blue': '0 0 10px rgba(6, 182, 212, 0.5), 0 0 20px rgba(6, 182, 212, 0.3)',
+                'neon-purple': '0 0 10px rgba(124, 58, 237, 0.5), 0 0 20px rgba(124, 58, 237, 0.3)',
+                'glow': '0 0 15px rgba(99, 102, 241, 0.5)',
                 // macOS System Colors
                 'system-gray': {
                     light: '#F5F5F5',
@@ -55,10 +59,6 @@ export default {
                     border: '#D1D1D1',
                     'border-dark': '#333333',
                 },
-                'system-blue': '#007AFF',
-                'system-red': '#FF3B30',
-                'system-green': '#34C759',
-                'system-orange': '#FF9500',
             },
             fontFamily: {
                 sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Text"', '"Segoe UI"', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
