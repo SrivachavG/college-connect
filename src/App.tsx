@@ -14,6 +14,12 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Tools from './pages/Tools'
 import Events from './pages/Events'
+import StudyRoom from './pages/StudyRoom'
+import SmartStudyDashboard from './pages/SmartStudyDashboard'
+import PdfStudio from './pages/PdfStudio'
+import ImageToPdf from './components/tools/pdf/ImageToPdf'
+import MergePdf from './components/tools/pdf/MergePdf'
+import SplitPdf from './components/tools/pdf/SplitPdf'
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -53,6 +59,12 @@ function App() {
                             <Route path="chat" element={<Chat />} />
                             <Route path="events" element={<Events />} />
                             <Route path="tools" element={<Tools />} />
+                            <Route path="study-room" element={<StudyRoom />} />
+                            <Route path="smart-study" element={<SmartStudyDashboard />} />
+                            <Route path="tools/pdf-studio" element={<PdfStudio />} />
+                            <Route path="tools/pdf/image-to-pdf" element={<ImageToPdf />} />
+                            <Route path="tools/pdf/merge" element={<MergePdf />} />
+                            <Route path="tools/pdf/split" element={<SplitPdf />} />
                             <Route path="profile" element={<Profile />} />
                             <Route path="settings" element={<Settings />} />
                         </Route>

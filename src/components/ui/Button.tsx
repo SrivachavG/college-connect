@@ -4,7 +4,7 @@ import { motion, HTMLMotionProps } from 'framer-motion'
 
 interface ButtonProps extends Omit<HTMLMotionProps<"button">, "children"> {
     children: ReactNode
-    variant?: 'primary' | 'secondary' | 'accent' | 'outline'
+    variant?: 'primary' | 'secondary' | 'accent' | 'outline' | 'ghost'
     className?: string
 }
 
@@ -21,6 +21,7 @@ export default function Button({
         secondary: 'glass text-gray-800 dark:text-gray-100 border border-white/40 dark:border-white/10 hover:bg-white/60 dark:hover:bg-white/10',
         accent: 'bg-gradient-to-r from-accent-purple to-accent-pink text-white shadow-lg hover:shadow-accent-purple/40 border border-transparent',
         outline: 'bg-transparent border-2 border-primary/30 text-primary dark:text-primary-light hover:border-primary hover:bg-primary/10',
+        ghost: 'bg-transparent text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/10 border border-transparent',
     }
 
     return (

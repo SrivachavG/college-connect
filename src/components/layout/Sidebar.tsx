@@ -9,7 +9,10 @@ import {
     Settings,
     LogOut,
     Wrench,
-    Calendar
+    Calendar,
+    Headphones,
+    LibraryBig,
+    FileText
 } from 'lucide-react'
 import { useAuthStore } from '../../store/useAuthStore'
 import toast from 'react-hot-toast'
@@ -22,6 +25,9 @@ const navItems = [
     { to: '/courses', icon: BookOpen, label: 'Courses' },
     { to: '/chat', icon: MessageCircle, label: 'Chat' },
     { to: '/tools', icon: Wrench, label: 'Tools' },
+    { to: '/study-room', icon: Headphones, label: 'Study Room' },
+    { to: '/smart-study', icon: LibraryBig, label: 'Smart Library' },
+    { to: '/tools/pdf-studio', icon: FileText, label: 'DocuMate PDF' },
 ]
 
 const bottomItems = [
@@ -43,7 +49,7 @@ const itemVariants = {
 }
 
 export default function Sidebar() {
-    const { logout, user } = useAuthStore()
+    const { logout } = useAuthStore()
 
     const handleLogout = () => {
         logout()
