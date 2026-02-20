@@ -7,7 +7,7 @@ import {
     Download, CheckCircle, RefreshCcw,
     Trash2, GripVertical
 } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+
 import Button from '../../ui/Button'
 import Card from '../../ui/Card'
 import PdfToolLayout from './PdfToolLayout'
@@ -21,7 +21,7 @@ interface ImageFile {
 }
 
 export default function ImageToPdf() {
-    const navigate = useNavigate()
+
     const [images, setImages] = useState<ImageFile[]>([])
     const [isConverting, setIsConverting] = useState(false)
     const [pdfUrl, setPdfUrl] = useState<string | null>(null)
@@ -181,7 +181,7 @@ export default function ImageToPdf() {
 
                     <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar">
                         <AnimatePresence initial={false}>
-                            {images.map((img, index) => (
+                            {images.map((img, _index) => (
                                 <motion.div
                                     key={img.id}
                                     initial={{ opacity: 0, x: 20 }}

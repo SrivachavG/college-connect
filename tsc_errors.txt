@@ -1,0 +1,41 @@
+﻿src/components/dashboard/NewTaskModal.tsx(3,13): error TS6133: 'Calendar' is declared but its value is never read.
+src/components/dashboard/NewTaskModal.tsx(3,23): error TS6133: 'BookOpen' is declared but its value is never read.
+src/components/tools/CareerRoadmap.tsx(2,18): error TS6133: 'AnimatePresence' is declared but its value is never read.
+src/components/tools/CareerRoadmap.tsx(3,31): error TS6133: 'Map' is declared but its value is never read.
+src/components/tools/CareerRoadmap.tsx(3,36): error TS6133: 'ChevronRight' is declared but its value is never read.
+src/components/tools/CareerRoadmap.tsx(3,57): error TS6133: 'BookOpen' is declared but its value is never read.
+src/components/tools/CareerRoadmap.tsx(3,67): error TS6133: 'Globe' is declared but its value is never read.
+src/components/tools/CareerRoadmap.tsx(5,1): error TS6133: 'Button' is declared but its value is never read.
+src/components/tools/pdf/ImageToPdf.tsx(24,11): error TS6133: 'navigate' is declared but its value is never read.
+src/components/tools/pdf/ImageToPdf.tsx(184,47): error TS6133: 'index' is declared but its value is never read.
+src/components/tools/pdf/MergePdf.tsx(21,11): error TS6133: 'navigate' is declared but its value is never read.
+src/components/tools/pdf/MergePdf.tsx(74,36): error TS2322: Type 'Uint8Array<ArrayBufferLike>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBufferLike>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBufferLike' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.
+src/components/tools/pdf/PdfToolLayout.tsx(16,11): error TS6133: 'Icon' is declared but its value is never read.
+src/components/tools/pdf/PdfToolLayout.tsx(17,5): error TS6133: 'color' is declared but its value is never read.
+src/components/tools/pdf/SplitPdf.tsx(3,1): error TS6192: All imports in import declaration are unused.
+src/components/tools/pdf/SplitPdf.tsx(8,5): error TS6133: 'GripVertical' is declared but its value is never read.
+src/components/tools/pdf/SplitPdf.tsx(11,1): error TS6133: 'Card' is declared but its value is never read.
+src/components/tools/pdf/SplitPdf.tsx(89,36): error TS2322: Type 'Uint8Array<ArrayBufferLike>' is not assignable to type 'BlobPart'.
+  Type 'Uint8Array<ArrayBufferLike>' is not assignable to type 'ArrayBufferView<ArrayBuffer>'.
+    Types of property 'buffer' are incompatible.
+      Type 'ArrayBufferLike' is not assignable to type 'ArrayBuffer'.
+        Type 'SharedArrayBuffer' is not assignable to type 'ArrayBuffer'.
+          Types of property '[Symbol.toStringTag]' are incompatible.
+            Type '"SharedArrayBuffer"' is not assignable to type '"ArrayBuffer"'.
+src/components/tools/ProjectNexus.tsx(3,10): error TS6133: 'Lightbulb' is declared but its value is never read.
+src/components/tools/QuantumInterviewer.tsx(2,18): error TS6133: 'AnimatePresence' is declared but its value is never read.
+src/components/tools/QuantumInterviewer.tsx(54,12): error TS6133: 'sessionState' is declared but its value is never read.
+src/components/tools/QuantumInterviewer.tsx(63,12): error TS6133: 'currentQuestionIndex' is declared but its value is never read.
+src/components/tools/QuantumInterviewer.tsx(63,34): error TS6133: 'setCurrentQuestionIndex' is declared but its value is never read.
+src/components/tools/QuantumInterviewer.tsx(241,41): error TS2322: Type '{ children: string; size: string; onClick: () => void; }' is not assignable to type 'IntrinsicAttributes & ButtonProps'.
+  Property 'size' does not exist on type 'IntrinsicAttributes & ButtonProps'.
+src/hooks/useMediaStream.ts(1,20): error TS6133: 'useEffect' is declared but its value is never read.
+src/pages/StudyRoom.tsx(7,36): error TS6133: 'Moon' is declared but its value is never read.
+src/pages/StudyRoom.tsx(7,42): error TS6133: 'Zap' is declared but its value is never read.
+src/store/useAuthStore.ts(42,41): error TS6133: 'password' is declared but its value is never read.

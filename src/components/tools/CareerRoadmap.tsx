@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { CheckCircle, Circle, Map, ChevronRight, Award, BookOpen, Globe, Server, Brain, Layout } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { CheckCircle, Circle, Award, Server, Brain, Layout } from 'lucide-react'
 import Card from '../ui/Card'
-import Button from '../ui/Button'
+
 
 interface Skill {
     id: string
@@ -144,8 +144,8 @@ export default function CareerRoadmap() {
                         key={path.id}
                         onClick={() => setSelectedPath(path)}
                         className={`w-full flex items-center gap-3 p-3 rounded-xl transition-all ${selectedPath.id === path.id
-                                ? 'bg-white dark:bg-gray-800 shadow-md border-l-4 border-blue-500'
-                                : 'hover:bg-gray-100 dark:hover:bg-gray-800/50'
+                            ? 'bg-white dark:bg-gray-800 shadow-md border-l-4 border-blue-500'
+                            : 'hover:bg-gray-100 dark:hover:bg-gray-800/50'
                             }`}
                         whileTap={{ scale: 0.98 }}
                     >
@@ -221,8 +221,8 @@ export default function CareerRoadmap() {
                                                     whileHover={{ y: -2 }}
                                                     onClick={() => toggleSkill(skill.id)}
                                                     className={`p-4 rounded-xl border-2 cursor-pointer transition-all ${isCompleted
-                                                            ? 'bg-green-50 dark:bg-green-900/10 border-green-500/50'
-                                                            : 'bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700'
+                                                        ? 'bg-green-50 dark:bg-green-900/10 border-green-500/50'
+                                                        : 'bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700'
                                                         }`}
                                                 >
                                                     <div className="flex justify-between items-start mb-2">

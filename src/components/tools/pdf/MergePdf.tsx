@@ -7,7 +7,7 @@ import {
     Download, CheckCircle, RefreshCcw,
     Trash2, GripVertical, Merge
 } from 'lucide-react'
-import { useNavigate } from 'react-router-dom'
+
 import Button from '../../ui/Button'
 import Card from '../../ui/Card'
 import toast from 'react-hot-toast'
@@ -18,7 +18,7 @@ interface PdfFile extends File {
 }
 
 export default function MergePdf() {
-    const navigate = useNavigate()
+
     const [files, setFiles] = useState<PdfFile[]>([])
     const [isMerging, setIsMerging] = useState(false)
     const [mergedPdfUrl, setMergedPdfUrl] = useState<string | null>(null)
@@ -71,7 +71,7 @@ export default function MergePdf() {
             }
 
             const pdfBytes = await mergedPdf.save()
-            const blob = new Blob([pdfBytes], { type: 'application/pdf' })
+            const blob = new Blob([pdfBytes as unknown as Uint8Array<ArrayBuffer>], { type: 'application/pdf' })
             const url = URL.createObjectURL(blob)
             setMergedPdfUrl(url)
             toast.success('PDFs Merged Successfully!')

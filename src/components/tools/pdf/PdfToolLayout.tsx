@@ -13,8 +13,6 @@ interface PdfToolLayoutProps {
 export default function PdfToolLayout({
     title,
     description,
-    icon: Icon,
-    color = "text-gray-900",
     children
 }: PdfToolLayoutProps) {
     const navigate = useNavigate()

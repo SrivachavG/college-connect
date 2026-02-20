@@ -1,11 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
     MessageSquareCode, Mic, MicOff, Video, VideoOff,
     PhoneOff, Monitor, Volume2, User
 } from 'lucide-react'
 import Card from '../ui/Card'
-import Button from '../ui/Button'
 import useMediaStream from '../../hooks/useMediaStream'
 import useSpeech from '../../hooks/useSpeech'
 import AudioVisualizer from '../ui/AudioVisualizer'
@@ -51,7 +50,6 @@ const modes: InterviewMode[] = [
 
 export default function QuantumInterviewer() {
     const [activeMode, setActiveMode] = useState<InterviewMode | null>(null)
-    const [sessionState, setSessionState] = useState<'idle' | 'intro' | 'active' | 'feedback'>('idle')
     const [messages, setMessages] = useState<Message[]>([])
 
     // Custom Hooks
@@ -60,7 +58,7 @@ export default function QuantumInterviewer() {
 
     const userVideoRef = useRef<HTMLVideoElement>(null)
     const messagesEndRef = useRef<HTMLDivElement>(null)
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+
 
     // Sync media stream to video element
     useEffect(() => {
@@ -84,7 +82,6 @@ export default function QuantumInterviewer() {
 
     const startInterview = async (mode: InterviewMode) => {
         setActiveMode(mode)
-        setSessionState('intro')
         await initStream()
 
         const initialMsg: Message = {
@@ -96,7 +93,6 @@ export default function QuantumInterviewer() {
 
         setMessages([initialMsg])
         speak(initialMsg.text)
-        setSessionState('active')
         startListening()
     }
 
@@ -105,7 +101,6 @@ export default function QuantumInterviewer() {
         if (stream) {
             stream.getTracks().forEach(track => track.stop())
         }
-        setSessionState('idle')
         setActiveMode(null)
         setMessages([])
         resetTranscript()
@@ -222,8 +217,8 @@ export default function QuantumInterviewer() {
                                     {msg.sender === 'user' ? <User className="w-4 h-4" /> : <MessageSquareCode className="w-4 h-4" />}
                                 </div>
                                 <div className={`p-4 rounded-2xl max-w-[85%] ${msg.sender === 'user'
-                                        ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-tr-none'
-                                        : 'bg-cyan-50 dark:bg-cyan-900/20 text-gray-900 dark:text-blue-100 border border-cyan-100 dark:border-cyan-800 rounded-tl-none'
+                                    ? 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-tr-none'
+                                    : 'bg-cyan-50 dark:bg-cyan-900/20 text-gray-900 dark:text-blue-100 border border-cyan-100 dark:border-cyan-800 rounded-tl-none'
                                     }`}>
                                     <p className="text-sm leading-relaxed">{msg.text}</p>
                                 </div>
@@ -238,7 +233,10 @@ export default function QuantumInterviewer() {
                             <p className="text-xs text-gray-400 uppercase font-bold mb-2">Live Transcript</p>
                             <p className="text-gray-600 dark:text-gray-300 italic">{transcript}...</p>
                             <div className="mt-3 flex justify-end">
-                                <Button size="sm" onClick={handleSendResponse}>Send Response</Button>
+                                <button
+                                    className="px-4 py-2 bg-cyan-500 hover:bg-cyan-600 text-white text-sm font-semibold rounded-lg transition-colors"
+                                    onClick={handleSendResponse}
+                                >Send Response</button>
                             </div>
                         </div>
                     )}

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Lightbulb, Code2, Database, Globe, Cpu, RefreshCw, Zap, Rocket, Terminal } from 'lucide-react'
+import { Code2, Database, Globe, Cpu, RefreshCw, Zap, Rocket, Terminal } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import Card from '../ui/Card'
 import Button from '../ui/Button'
@@ -158,8 +158,8 @@ export default function ProjectNexus() {
                                         key={domain.id}
                                         onClick={() => setSelectedDomain(domain.id)}
                                         className={`relative p-4 rounded-xl text-left transition-all overflow-hidden group ${selectedDomain === domain.id
-                                                ? 'bg-blue-600/20 border-blue-500/50 shadow-lg shadow-blue-500/10'
-                                                : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'
+                                            ? 'bg-blue-600/20 border-blue-500/50 shadow-lg shadow-blue-500/10'
+                                            : 'bg-white/5 border-white/5 hover:bg-white/10 hover:border-white/20'
                                             } border`}
                                     >
                                         <div className="flex items-center justify-between relative z-10">

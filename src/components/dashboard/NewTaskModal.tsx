@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Calendar, BookOpen } from 'lucide-react'
+import { X } from 'lucide-react'
 import Button from '../ui/Button'
 import { useAcademicStore } from '../../store/useAcademicStore'
 import toast from 'react-hot-toast'

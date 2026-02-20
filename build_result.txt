@@ -1,0 +1,5 @@
+﻿
+> college-connect@1.0.0 build
+> tsc && vite build
+
+src/components/tools/ProjectNexus.tsx(3,10): error TS6133: 'Lightbulb' is declared but its value is never read.

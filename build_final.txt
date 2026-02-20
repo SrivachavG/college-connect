@@ -1,0 +1,68 @@
+﻿
+> college-connect@1.0.0 build
+> tsc && vite build
+
+[36mvite v5.4.21 [32mbuilding for production...[36m[39m
+transforming...
+[32mΓ£ô[39m 3717 modules transformed.
+node.exe : src/compon
+ents/tools/Calculator
+.tsx (34:35): Use of 
+eval in "src/componen
+ts/tools/Calculator.t
+sx" is strongly 
+discouraged as it 
+poses security risks 
+and may cause issues 
+with minification.
+At line:1 char:1
++ & "C:\Program Files
+\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (src/com   
+ ponents/...h min    
+ification.:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+rendering chunks...
+computing gzip size...
+[2mdist/[22m[32mindex.html                          [39m[1m[2m    0.82 kB[22m[1m[22m[2m Γöé gzip:   0.45 kB[22m
+[2mdist/[22m[35massets/index-DiSnoZOe.css           [39m[1m[2m   93.06 kB[22m[1m[22m[2m Γöé gzip:  14.28 kB[22m
+[2mdist/[22m[36massets/purify.es-B9ZVCkUG.js        [39m[1m[2m   22.64 kB[22m[1m[22m[2m Γöé gzip:   8.75 kB[22m
+[2mdist/[22m[36massets/index.es-DGcid2_K.js         [39m[1m[2m  150.47 kB[22m[1m[22m[2m Γöé gzip:  51.44 kB[22m
+[2mdist/[22m[36massets/html2canvas.esm-CBrSDip1.js  [39m[1m[2m  201.42 kB[22m[1m[22m[2m Γöé gzip:  48.03 kB[22m
+[2mdist/[22m[36massets/index-Z2khIdvL.js            [39m[1m[33m2,385.23 kB[39m[22m[2m Γöé gzip: 704.74 kB[22m
+[33m
+(!) Some chunks are 
+larger than 500 kB 
+after minification. 
+Consider:
+- Using dynamic 
+import() to 
+code-split the 
+application
+- Use build.rollupOpt
+ions.output.manualChu
+nks to improve 
+chunking: https://rol
+lupjs.org/configurati
+on-options/#output-ma
+nualchunks
+- Adjust chunk size 
+limit for this 
+warning via build.chu
+nkSizeWarningLimit.[
+39m
+[32mΓ£ô built in 28.03s[39m

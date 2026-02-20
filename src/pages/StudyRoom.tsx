@@ -4,7 +4,7 @@ import {
     Play, Pause, RotateCcw,
     Music, Volume2, VolumeX,
     CheckCircle2, Plus, X,
-    Brain, CloudRain, Wind, Radio, Moon, Zap, Waves, Rocket, Trash2
+    Brain, CloudRain, Wind, Radio, Waves, Rocket, Trash2
 } from 'lucide-react'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
@@ -229,8 +229,8 @@ export default function StudyRoom() {
                                                 key={preset.id}
                                                 onClick={() => setAmbience(preset.id === selectedPreset ? null : preset.id)}
                                                 className={`p-3 rounded-lg text-left transition-all ${selectedPreset === preset.id
-                                                        ? 'bg-white text-gray-900 shadow-lg scale-[1.02]'
-                                                        : 'bg-black/20 text-white/70 hover:bg-black/30 hover:text-white'
+                                                    ? 'bg-white text-gray-900 shadow-lg scale-[1.02]'
+                                                    : 'bg-black/20 text-white/70 hover:bg-black/30 hover:text-white'
                                                     }`}
                                             >
                                                 <div className="flex items-center gap-2 mb-1">

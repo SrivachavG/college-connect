@@ -39,7 +39,7 @@ export const useAuthStore = create<AuthStore>()(
                 return false
             },
 
-            signup: async (name, email, password, role) => {
+            signup: async (name, email, _password, role) => {
                 // Mock signup logic
                 set({
                     user: {

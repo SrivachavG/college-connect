@@ -1,14 +1,12 @@
 import { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { motion, AnimatePresence } from 'framer-motion'
+
 import { PDFDocument } from 'pdf-lib'
 import {
     Upload, FileText, Scissors,
-    Download, CheckCircle, RefreshCcw,
-    GripVertical
+    Download, CheckCircle, RefreshCcw
 } from 'lucide-react'
 import Button from '../../ui/Button'
-import Card from '../../ui/Card'
 import toast from 'react-hot-toast'
 import PdfToolLayout from './PdfToolLayout'
 
@@ -86,7 +84,7 @@ export default function SplitPdf() {
             copiedPages.forEach(page => newPdf.addPage(page))
 
             const pdfBytes = await newPdf.save()
-            const blob = new Blob([pdfBytes], { type: 'application/pdf' })
+            const blob = new Blob([pdfBytes as unknown as Uint8Array<ArrayBuffer>], { type: 'application/pdf' })
             const url = URL.createObjectURL(blob)
             setSplitPdfUrl(url)
             toast.success('PDF Split Successfully!')
