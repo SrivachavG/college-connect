@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from 'react-hot-toast'
 import { useAuthStore } from './store/useAuthStore'
@@ -36,7 +36,7 @@ function App() {
     return (
         <QueryClientProvider client={queryClient}>
             <div className="min-h-screen bg-gray-50 dark:bg-black text-gray-900 dark:text-white transition-colors duration-300">
-                <BrowserRouter>
+                <Router>
                     <Routes>
                         {/* Public Routes */}
                         <Route path="/login" element={
@@ -69,7 +69,7 @@ function App() {
                             <Route path="settings" element={<Settings />} />
                         </Route>
                     </Routes>
-                </BrowserRouter>
+                </Router>
                 <Toaster
                     position="bottom-right"
                     toastOptions={{
